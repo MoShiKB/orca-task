@@ -13,7 +13,7 @@ module "eks" {
 
   cluster_endpoint_private_access      = true
   cluster_endpoint_public_access       = true
-  cluster_endpoint_public_access_cidrs = ["79.182.185.82"]
+  cluster_endpoint_public_access_cidrs = ["79.182.185.82/32"]
 
 
   cluster_addons = {
@@ -25,6 +25,11 @@ module "eks" {
       resolve_conflicts = "OVERWRITE"
     }
   }
+
+  enable_irsa = true
+
+  cluster_enabled_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+  cloudwatch_log_group_retention_in_days = 7
 
   cluster_encryption_config = [{
     provider_key_arn = aws_kms_key.eks.arn
