@@ -81,7 +81,7 @@ In order to build our app image, run these commands:
 
 then, install the chart by these commands on k8s:
 
-	helm install orca-helm ../orca_chart/
+	helm install orca-app ../orca_chart/
 
 which installs:
 1. Deployment - with readiness & liveness probe(*** NOTE: I had to change app.py to listen in 0.0.0.0 instead of 127.0.0.1 in order to make it works ***)
